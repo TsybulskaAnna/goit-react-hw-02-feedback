@@ -6,8 +6,11 @@ import Section from './Section';
 
 import s from './App.module.scss';
 
+const options = ['good', 'neutral', 'bad']; 
+
  class App extends Component {
   state = { good: 0, neutral: 0, bad: 0 };
+  
 
   onLeaveFeedback = scoreName => {
     this.setState(prevState => {
@@ -15,7 +18,8 @@ import s from './App.module.scss';
         [scoreName]: prevState[scoreName] + 1,
       };
     });
-  };
+  }; 
+
   countTotalFeedback = () => {
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
@@ -32,7 +36,7 @@ import s from './App.module.scss';
     return (
       <div className={s.container}> 
       <Section title="Please leave feedback">
-        <FeedbackOptions onLeaveFeedback={onLeaveFeedback} />
+        <FeedbackOptions options={options} onLeaveFeedback={onLeaveFeedback} />
         </Section>
         <Section title="Statistics">
           {this.countTotalFeedback() > 0 ? (

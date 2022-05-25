@@ -1,27 +1,21 @@
-import PropTypes from 'prop-types';
-
 import s from './FeedbackOptions.module.scss';
-
-function FeedbackOptions ({onLeaveFeedback}) { 
-  return (
-      <div className={s.fbButns}>
-          <button  className={s.button} onClick={() => onLeaveFeedback('good')} type="button">
-            Good
-          </button>
-          <button className={s.button} onClick={() => onLeaveFeedback('neutral')} type="button">
-            Neutral
-          </button>
-          <button className={s.button} onClick={() => onLeaveFeedback('bad')} type="button">
-            Bad
-          </button>
-        </div>
-  )
-  }
+import PropTypes from 'prop-types';
+function FeedbackOptions({ options, onLeaveFeedback }) {
+  const elements = options.map((el, idx) => (
+    <div className={s.fbButns}>
+      <li className={s.button}>
+        <button key={idx} type="button" onClick={() => onLeaveFeedback(el)}>
+          {el}
+        </button>
+      </li>
+    </div>
+  ));
+  return <>{elements}</>;
+}
 
 export default FeedbackOptions;
 
-FeedbackOptions.prototype = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
+FeedbackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string),
+  onLeaveFeedback: PropTypes.func.isRequired,
 };

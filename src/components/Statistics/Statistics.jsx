@@ -17,7 +17,11 @@ const Statistics = ({ good, neutral, bad, countTotalFeedback, countPositiveFeedb
 };
 
 Statistics.propTypes = {
-  Statistics: PropTypes.number.isRequired,
+  good: PropTypes.number.isRequired,
+  neutral : PropTypes.number.isRequired,
+  bad : PropTypes.number.isRequired,
+  countTotalFeedback : PropTypes.number.isRequired,
+  countPositiveFeedbackPercentage : PropTypes.number.isRequired,
 };
 
 export default Statistics;
